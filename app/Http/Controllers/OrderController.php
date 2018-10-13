@@ -4,6 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+/**
+ * Added by MedJamal
+ */
+use Illuminate\Support\Facades\DB;
+
+use App\Order;
+use App\Ingredient;
+
 class OrderController extends Controller
 {
     /**
@@ -13,7 +21,11 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $orders = Order::all();
+
+        // return $orders;
+
+        return view('orders.index')->with('orders', $orders);
     }
 
     /**
@@ -23,7 +35,13 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        $ingredients = DB::table('ingredients')->get(['id', 'name']);
+
+        // return $ingredients;
+
+        return view('orders.create')->with('ingredients', $ingredients);
+        
+        // return view('orders.create', [ 'ingredients' => $ingredients ]);
     }
 
     /**
@@ -34,7 +52,19 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        // return $arr = $request->input('ingredients');
+        // return (serialize($arr));
+
+        
+        $order = new Order;
+
+        $order->email = $request->input('email');
+        $order->ingredients = serialize($request->input('ingredients'));
+        $order->total = $request->input('total');
+        $order->status = $request->input('status') ? true : false;
+
+        $order->save();
     }
 
     /**

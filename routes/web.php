@@ -5,3 +5,5 @@ Route::get('/', function () {
 });
 
 Route::resource('ingredients', 'IngredientController');
+
+Route::resource('orders', 'OrderController');
