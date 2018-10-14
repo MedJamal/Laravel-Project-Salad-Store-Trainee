@@ -13,6 +13,12 @@ class IngredientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public static function getIngredients($data) {
+        $ids = $data;
+        return Ingredient::findMany($ids);
+    }
+
     public function index()
     {
         $ingredients = Ingredient::all();

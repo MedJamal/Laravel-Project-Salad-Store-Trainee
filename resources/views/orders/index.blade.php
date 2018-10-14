@@ -34,7 +34,9 @@
                             {{ $order->id }}
                         </th>
                         <td>{{ $order->email }}</td>
-                        <td>{{ $order->ingredients }}</td>
+                        <td class="ingredients">{{ $order->ingredients }}</td>
+                        {{-- <td>{{ presentIngredients($order->ingredients) }}</td> --}}
+                        {{-- <td>{{ unserialize($order->ingredients) }}</td> --}}
                         <td>{{ $order->total }}</td>
                         <td>{{ $order->status }}</td>
                         <td>

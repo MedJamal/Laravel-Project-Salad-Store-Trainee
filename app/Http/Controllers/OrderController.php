@@ -23,6 +23,22 @@ class OrderController extends Controller
     {
         $orders = Order::all();
 
+        // return unserialize($orders[3]->ingredients);
+
+        // return $orders[3]->ingredients;
+
+        // return strlen($orders);
+        // $newData = [];
+        foreach ($orders as $key => $order) {
+
+            // $order->ingredients = (unserialize($order->ingredients));
+
+
+            $order->ingredients = IngredientController::getIngredients(unserialize($order->ingredients))->pluck('name');
+        }
+
+        
+
         // return $orders;
 
         return view('orders.index')->with('orders', $orders);
@@ -55,7 +71,6 @@ class OrderController extends Controller
         
         // return $arr = $request->input('ingredients');
         // return (serialize($arr));
-
         
         $order = new Order;
 
