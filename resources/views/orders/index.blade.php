@@ -34,9 +34,15 @@
                             {{ $order->id }}
                         </th>
                         <td>{{ $order->email }}</td>
-                        <td class="ingredients">{{ $order->ingredients }}</td>
+                        {{-- <td class="ingredients">{{ $order->ingredients }}</td> --}}
                         {{-- <td>{{ presentIngredients($order->ingredients) }}</td> --}}
                         {{-- <td>{{ unserialize($order->ingredients) }}</td> --}}
+                        <td>
+                            @foreach ($order->ingredients as $ingredient)
+                                <span class="badge badge-info">{{ $ingredient }}</span>
+                            @endforeach
+                        </td>
+
                         <td>{{ $order->total }}</td>
                         <td>{{ $order->status }}</td>
                         <td>
