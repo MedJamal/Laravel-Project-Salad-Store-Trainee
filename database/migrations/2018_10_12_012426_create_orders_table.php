@@ -17,7 +17,7 @@ class CreateOrdersTable extends Migration
             $table->increments('id');
             $table->string('email');
             $table->string('ingredients');
-            $table->integer('total'); // prefere "quantity" table name 
+            $table->integer('total');
             $table->integer('status');
             $table->timestamps();
         });
