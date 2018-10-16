@@ -16,7 +16,7 @@
         <div class="form-group">
             <label for="name">Price</label>
             {{-- price input must to be fix for price currency --}}
-            <input type="number" class="form-control" name="price" placeholder="Enter the price">
+            <input type="decimal" class="form-control" name="price" placeholder="Enter the price">
         </div>
 
         <div class="form-group form-check">

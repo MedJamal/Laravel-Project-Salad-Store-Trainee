@@ -29,16 +29,18 @@
             <label for="Ingredients"></label>
             <select multiple class="form-control" name="ingredients[]">
                 @foreach ($ingredients as $ingredient)
-                    <option value="{{ $ingredient->id}}">{{ $ingredient->name }}</option>
+                    @if($ingredient->isactive)
+                        <option value="{{ $ingredient->id }}">{{ $ingredient->name }}</option>
+                    @endif
                 @endforeach
             </select>
             <small class="form-text text-muted">Press (CTRL) for multiple select.</small>
         </div>
         
-        <div class="form-group col-md-4">
+        {{-- <div class="form-group col-md-4">
             <label for="total">Total</label>
             <input type="number" class="form-control" name="total" placeholder="Enter the total">
-        </div>
+        </div> --}}
 
         <div class="form-group form-check col-md-4">
             <input type="checkbox" name="status" class="form-check-input">

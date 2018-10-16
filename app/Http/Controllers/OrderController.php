@@ -14,24 +14,18 @@ use App\Ingredient;
 
 class OrderController extends Controller
 {
-
+    /**
+     * Show all orders.
+     */
     public function index()
     {
+        // Get all orders 
         $orders = Order::all();
 
-        // return unserialize($orders[3]->ingredients);
-
-        // return $orders[3]->ingredients;
-
-        // return strlen($orders);
-
+        // Get selected ingredients name from Ingredients Table
         foreach ($orders as $key => $order) {
-
-            // $order->ingredients = (unserialize($order->ingredients));
-
             $order->ingredients = IngredientController::getIngredients(unserialize($order->ingredients))->pluck('name');
         }
-
 
         // return $orders;
 
@@ -40,7 +34,7 @@ class OrderController extends Controller
 
     public function create()
     {
-        $ingredients = DB::table('ingredients')->get(['id', 'name']);
+        $ingredients = DB::table('ingredients')->get(['id', 'name', 'isactive']);
 
         // return $ingredients;
 
@@ -52,14 +46,30 @@ class OrderController extends Controller
 
     public function store(Request $request)
     {
-        // return $arr = $request->input('ingredients');
-        // return (serialize($arr));
+        // Get selected ingredients price
+        $prices = IngredientController::getIngredients($request->input('ingredients'))->pluck('price');
         
+        // Convert from $prices variable array to float
+        foreach($prices as $i => $price){
+            $prices[$i] =(float)$price;
+        }
+
         $order = new Order;
+
+        // Calculate order total price
+
+        $orderTotal = 0;
+        
+        foreach ( $prices as $price) {
+            $orderTotal += $price;
+        }
+
+        // Store all data to DB Orders
 
         $order->email = $request->input('email');
         $order->ingredients = serialize($request->input('ingredients'));
-        $order->total = $request->input('total');
+        // $order->total = $request->input('total');
+        $order->total = $orderTotal;
         $order->status = $request->input('status') ? true : false;
 
         $order->save();
