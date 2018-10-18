@@ -8,6 +8,13 @@ use App\Ingredient;
 
 class IngredientController extends Controller
 {
+    // Handle authontifications
+    public function __construct(){
+
+        $this->middleware('auth')->except('create');
+
+    }
+
     // Fetch Ingredients function by many IDs
     public static function getIngredients($data) {
         $ids = $data;

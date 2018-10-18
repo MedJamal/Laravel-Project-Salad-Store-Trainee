@@ -1,22 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Home</title>
+<!-- Bootstrap stylesheet -->
+<link href="{{asset('bootstrap\css\bootstrap.css')}}" rel="stylesheet">
+<!-- crousel css -->
+<link href="{{asset('js\owl-carousel\owl.carousel.css')}}" rel="stylesheet" type="text/css">
+<!--bootstrap select-->
+<link href="{{asset('js\dist\css\bootstrap-select.css')}}" rel="stylesheet" type="text/css">
+<!-- font -->
+<link href="https://fonts.googleapis.com/css?family=Fira+Sans:300,400,500,600,700,800,900" rel="stylesheet">
+<!-- font-awesome -->
+<link href="{{asset('font-awesome\css\font-awesome.min.css')}}" rel="stylesheet" type="text/css">
+<link href="{{asset('css\ele-style.css')}}" rel="stylesheet" type="text/css">
+<!-- stylesheet -->
+<link href="{{asset('css\style.css')}}" rel="stylesheet" type="text/css">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    <title>Document</title>
-</head>
 <body>
-
+    <!--top start here -->
+    @include('partials.top')
+    
+    <!-- header start here-->
+    @include('partials.header')
+    
     @yield('content')
+    
+    <!-- footer start here -->
+    <footer>
+        <!-- container start here -->
+        @include('partials.footer.container')
 
-
-
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <!-- powered start here -->
+        @include('partials.footer.powered')
+    </footer>
+    <!-- footer end here -->
+    
+    <!-- jquery -->
+    <script src="{{ asset('js\jquery.2.1.1.min.js') }}"></script>
+    <!-- bootstrap js -->
+    <script src="{{ asset('bootstrap\js\bootstrap.min.js') }}"></script>
+    <!--bootstrap select-->
+    <script src="{{ asset('js\dist\js\bootstrap-select.js') }}"></script>
+    <!--internal js-->
+    <script src="{{ asset('js\internal.js') }}"></script>
+    <!-- owlcarousel js -->
+    <script src="{{ asset('js\owl-carousel\owl.carousel.min.js') }}"></script>
 </body>
 </html>
