@@ -1,11 +1,15 @@
-@extends('layouts.default')
+@extends('admin.layouts.default')
 
 @section('content')
 
 <div class="container">
     <br>
+
+    <div class="put-left">
+        <h3>Create Ingredients:</h3>
+    </div>
     
-    <form method="POST" action="{{ route('ingredients.store') }}">
+    <form method="POST" action="{{ route('admin.ingredients.store') }}" enctype="multipart/form-data">
         {{ csrf_field() }}
 
         <div class="form-group">
@@ -32,6 +36,7 @@
         <br>
 
         <button type="submit" class="btn btn-primary">Add</button>
+        <a href="{{ route('admin.ingredients.index') }}" class="btn btn-default">Back</a>
     </form>
 </div>
 

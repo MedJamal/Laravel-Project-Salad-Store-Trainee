@@ -112,7 +112,14 @@
                             </ul>
                         </li>
                         <li class="dropdown login">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon_profile"></i> My Account</a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="icon_profile"></i>
+                                @guest
+                                    My Account
+                                @else
+                                    {{ Auth::user()->name }}
+                                @endguest
+                            </a>
                             <ul class="dropdown-menu">
                                 <li>
                                     <button type="button" class="fac">Facebook</button>

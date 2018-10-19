@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('admin.layouts.default')
 
 @section('content')
 
@@ -11,7 +11,7 @@
         </div>
 
         <div>
-            <a class="btn btn-primary" href="{{ route('ingredients.create') }}">Add new ingredients</a>
+            <a class="btn btn-primary" href="{{ route('admin.ingredients.create') }}">Add new ingredients</a>
         </div>
 
         <br>
@@ -29,12 +29,14 @@
             </thead>
             <tbody>
                 @foreach ($ingredients as $ingredient)
-                    <tr>
+                    <tr class="justify-content-center">
                         <th scope="row">{{ $ingredient->id }}</th>
                         <td>{{ $ingredient->name }}</td>
                         <td>{{ $ingredient->price }}</td>
                         <td>{{ $ingredient->isactive ? 'Yes' : 'No' }}</td>
-                        <td>{{ $ingredient->image_path }}</td>
+                        <td>
+                            <img src="/images/ingredients/{{ $ingredient->image_path }}" alt="{{ $ingredient->image_path }}" height="50" class="rounded">
+                        </td>
                         <td>
                             <button class="btn btn-sm btn-success">Edit</button>
                             <button class="btn btn-sm btn-danger">Delet</button>

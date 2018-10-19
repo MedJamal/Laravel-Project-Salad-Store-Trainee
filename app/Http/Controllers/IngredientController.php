@@ -11,7 +11,7 @@ class IngredientController extends Controller
     // Handle authontifications
     public function __construct(){
 
-        $this->middleware('auth')->except('create');
+        $this->middleware('auth');
 
     }
 
@@ -27,13 +27,13 @@ class IngredientController extends Controller
 
         // return $ingredients;
 
-        return view('ingredients.index', [ 'ingredients' => $ingredients ]);
+        return view('admin.ingredients.index', [ 'ingredients' => $ingredients ]);
         
     }
 
     public function create()
     {
-        return view('ingredients.create');
+        return view('admin.ingredients.create');
     }
 
     public function store(Request $request)
@@ -45,14 +45,23 @@ class IngredientController extends Controller
             return $value ? true : false;
         }
 
+        // validate([
+        //     'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        // ]);
+        
+        $image = $request->file('image');
+        $fileNameToStore = time().'.'. $image->getClientOriginalName();
+            
+        $image->move(public_path('images/ingredients'), $fileNameToStore);
+
         $ingredient->name = $request->input('name');
         $ingredient->price = $request->input('price');
         $ingredient->isactive = presentIsActive( $request->input('isactive') );
-        $ingredient->image_path = $request->input('image'); // must convert to method for image upload and store in the server and store path in database
+        $ingredient->image_path = $fileNameToStore;
         
         $ingredient->save();
 
-        return redirect('/ingredients');
+        return redirect(route('admin.ingredients.index'));
     }
 
     public function show($id)

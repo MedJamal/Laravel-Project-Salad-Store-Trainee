@@ -27,9 +27,29 @@ class OrderController extends Controller
             $order->ingredients = IngredientController::getIngredients(unserialize($order->ingredients))->pluck('name');
         }
 
+        // foreach($orders as $order){
+        //     switch ($order->status) {
+        //         case 0:
+        //             $order->status = 'Annuler';
+        //             break;
+                
+        //         case 1:
+        //             $order->status = 'Préparer';
+        //             break;
+                
+        //         case 2:
+        //             $order->status = 'Prêt';
+        //             break;
+                
+        //         case 3:
+        //             $order->status = 'Livrer';
+        //             break;
+        //     }
+        // }
+
         // return $orders;
 
-        return view('orders.index')->with('orders', $orders);
+        return view('admin.orders.index')->with('orders', $orders);
     }
 
     public function create()
@@ -38,9 +58,9 @@ class OrderController extends Controller
 
         // return $ingredients;
 
-        return view('orders.create')->with('ingredients', $ingredients);
+        return view('admin.orders.create')->with('ingredients', $ingredients);
         
-        // return view('orders.create', [ 'ingredients' => $ingredients ]);
+        // return view('admin.orders.create', [ 'ingredients' => $ingredients ]);
     }
 
 
@@ -70,11 +90,26 @@ class OrderController extends Controller
         $order->ingredients = serialize($request->input('ingredients'));
         // $order->total = $request->input('total');
         $order->total = $orderTotal;
-        $order->status = $request->input('status') ? true : false;
+        // $order->status = $request->input('status') ? true : false;
+        $order->status = 1;
 
         $order->save();
+
+        return redirect(route('admin.orders.index'));
     }
 
+    // Set status of order
+    public function status($id, $status){
+
+        $order = Order::find($id);
+
+        $order->status = $status;
+
+        $order->save();
+
+        return redirect(route('admin.orders.index'));
+        
+    }
 
     public function show($id)
     {
