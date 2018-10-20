@@ -14,38 +14,29 @@ use App\Ingredient;
 
 class OrderController extends Controller
 {
+    public function __construct(){
+
+        $this->middleware('auth');
+
+    }
+    
     /**
      * Show all orders.
      */
     public function index()
     {
         // Get all orders 
-        $orders = Order::all();
+        // $orders = Order::all();
+        // return $orders->orderBy('status');
+
+        $orders = Order::select()->orderBy('status', 'desc')->paginate(10);
 
         // Get selected ingredients name from Ingredients Table
         foreach ($orders as $key => $order) {
-            $order->ingredients = IngredientController::getIngredients(unserialize($order->ingredients))->pluck('name');
+            $order->ingredients = IngredientController::getIngredients(unserialize($order->ingredients))
+                                                                ->pluck('name')
+                                                                ->take(5);
         }
-
-        // foreach($orders as $order){
-        //     switch ($order->status) {
-        //         case 0:
-        //             $order->status = 'Annuler';
-        //             break;
-                
-        //         case 1:
-        //             $order->status = 'Préparer';
-        //             break;
-                
-        //         case 2:
-        //             $order->status = 'Prêt';
-        //             break;
-                
-        //         case 3:
-        //             $order->status = 'Livrer';
-        //             break;
-        //     }
-        // }
 
         // return $orders;
 
@@ -67,7 +58,8 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         // Get selected ingredients price
-        $prices = IngredientController::getIngredients($request->input('ingredients'))->pluck('price');
+        $prices = IngredientController::getIngredients($request->input('ingredients'))
+                                            ->pluck('price');
         
         // Convert from $prices variable array to float
         foreach($prices as $i => $price){
@@ -113,7 +105,16 @@ class OrderController extends Controller
 
     public function show($id)
     {
-        //
+        $order = Order::find($id);
+        // Get selected ingredients name from Ingredients Table
+        
+        $ingredients = IngredientController::getIngredients(unserialize($order->ingredients))
+                                                ->pluck('name');
+
+        // return compact('order', 'ingredients');
+        // return $order;
+
+        return view('admin.orders.show', compact('order', 'ingredients'));
     }
 
 

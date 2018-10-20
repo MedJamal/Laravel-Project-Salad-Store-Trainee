@@ -4,7 +4,7 @@ Route::get('/', function () {
     return view('index');
 });
 
-// Route::resource('ingredients', 'IngredientController');
+Route::resource('ingredients', 'IngredientController');
 
 Route::resource('orders', 'OrderController');
 
@@ -23,7 +23,7 @@ Route::group( ['prefix'=>'admin'], function(){
     // Index
     Route::get('/', function(){
         return view('admin.index');
-    });
+    })->name('admin.index');
     
     // Ingredients
     Route::get('/ingredients', 'IngredientController@index')->name('admin.ingredients.index');
@@ -37,6 +37,7 @@ Route::group( ['prefix'=>'admin'], function(){
     Route::get('/orders/create', 'OrderController@create')->name('admin.orders.create');
     Route::post('/orders', 'OrderController@store')->name('admin.orders.store');
     Route::get('/orders/{id}/{status}', 'OrderController@status')->name('admin.orders.status');
+    Route::get('/order/{id}', 'OrderController@show')->name('admin.order.show');
     // Route::get('/orders/{id}/edit', 'OrderController@edit')->name('admin.orders.edit');
     // Route::put('/orders/{id}', 'OrderController@edit')->name('admin.orders.update');
 
