@@ -2,56 +2,56 @@
 <div class="col-md-6 col-sm-6 col-xs-12">
     <div class="commontop text-left">
         <h4>
-            Create your account
+            Créez votre compte
             <i class="icon_star_alt"></i>
             <i class="icon_star_alt"></i>
             <i class="icon_star_alt"></i>
         </h4>
     </div>
-    <p>Create your new account</p>
+    <p>Créez votre nouveau compte</p>
     <form method="post" action="{{ route('register') }}" enctype="multipart/form-data">
         @csrf
 
         <div class="form-group">	
-            <label>Email Address *</label>
-            <input type="text" name="email" value="" placeholder="Your Email" id="input-mail" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') }}" required>
+            <label>Adresse électronique *</label>
+            <input type="text" name="email" value="" placeholder="Votre email" id="input-mail" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') }}" required>
             
-            @if ($errors->has('email'))
+            {{-- @if ($errors->has('email'))
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $errors->first('email') }}</strong>
                 </span>
-            @endif
+            @endif --}}
         </div>
         <div class="form-group">	
-            <label>Name *</label>
+            <label>Prénom et Nom *</label>
             <input type="text"  name="name" value="{{ old('name') }}" required autofocus placeholder="John Doe" id="input-username" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}">
 
-            @if ($errors->has('name'))
+            {{-- @if ($errors->has('name'))
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $errors->first('name') }}</strong>
                 </span>
-            @endif
+            @endif --}}
         </div>
         <div class="form-group">
-            <label>password *</label>
-            <input type="text" name="password" value="" placeholder="Password" id="input-password1" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" required>
+            <label>Mot de passe *</label>
+            <input type="password" name="password" value="" placeholder="Mot de passe" id="input-password1" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" required>
             
-            @if ($errors->has('password'))
+            {{-- @if ($errors->has('password'))
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $errors->first('password') }}</strong>
                 </span>
-            @endif
+            @endif --}}
         </div>
         <div class="form-group">
-            <label>confirm password*</label>
-            <input type="text" name="password_confirmation" value="" placeholder="Password" id="input-confirmpassword" class="form-control">
+            <label>Confirmez le mot de passe *</label>
+            <input type="password" name="password_confirmation" value="" placeholder="Confirmez le mot de passe" id="input-confirmpassword" class="form-control">
         </div>
-        <button type="submit" class="btn btn-primary">SIGN up</button>
-        <div class="links">
+        <button type="submit" class="btn btn-primary">S'inscrire</button>
+        {{-- <div class="links">
             <input class="checkclass checkbox-inline" type="checkbox">Speed your way through the checkout
         </div>
         <div class="links">
             <input class="checkclass checkbox-inline" type="checkbox">Keep a record all purchases
-        </div>
+        </div> --}}
     </form>
 </div>	

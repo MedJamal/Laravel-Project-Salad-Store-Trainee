@@ -6,5 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ingredient extends Model
 {
-    // protected $fillable = ['name', 'price', 'isactive', 'image_path'];
+    public function ingredientscategories()
+    {
+        return $this->belongsTo('App\Ingredientscategory');
+    }
 }

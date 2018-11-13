@@ -11,13 +11,13 @@ use Illuminate\Support\Facades\DB;
 
 use App\Order;
 use App\Ingredient;
+use Session;
+use Auth;
 
 class OrderController extends Controller
 {
     public function __construct(){
-
-        $this->middleware('auth');
-
+        $this->middleware('auth', ['except' => ['placeOrder', 'store']]);
     }
     
     /**
@@ -37,12 +37,15 @@ class OrderController extends Controller
                                                                 ->pluck('name')
                                                                 ->take(5);
         }
-
+        
         // return $orders;
 
         return view('admin.orders.index')->with('orders', $orders);
     }
 
+    /**
+     * Create Order by Administrators
+     */
     public function create()
     {
         $ingredients = DB::table('ingredients')->get(['id', 'name', 'isactive']);
@@ -54,6 +57,9 @@ class OrderController extends Controller
         // return view('admin.orders.create', [ 'ingredients' => $ingredients ]);
     }
 
+    /**
+     * Store Order by Administrators
+     */
 
     public function store(Request $request)
     {
@@ -103,6 +109,9 @@ class OrderController extends Controller
         
     }
 
+    /**
+     * Show single Order
+     */
     public function show($id)
     {
         $order = Order::find($id);
@@ -118,20 +127,107 @@ class OrderController extends Controller
     }
 
 
-    public function edit($id)
-    {
-        //
+    // public function edit($id)
+    // {
+    //     //
+    // }
+
+
+    // public function update(Request $request, $id)
+    // {
+    //     //
+    // }
+
+
+    // public function destroy($id)
+    // {
+    //     //
+    // }
+    
+    /**
+     * Place Order by users
+     */
+    public function placeOrder(){
+
+        // return dd(Auth::user());
+
+        if (!Session::has('cart')) {
+            return view('cart'); // must add return with ERROR
+        }
+
+        // Get items from cart
+        $cart = Session::get('cart');
+        // Get total price
+        $orderTotal = $cart->totalPrice;
+
+        // Get selected ingredients IDs
+        $cartIds = $cart->presentIngredientsIDs();
+
+        // Store all data to DB Orders
+        $order = new Order;
+
+        $order->email = Auth::user()->email;
+        $order->ingredients = serialize($cartIds);
+        // $order->total = $request->input('total');
+        $order->total = $orderTotal;
+        // $order->status = $request->input('status') ? true : false;
+        $order->status = 1;
+
+        // $order->save();
+        Auth::user()->orders()->save($order);
+
+        Session::forget('cart');
+
+        
+
+        return view('thankyou');
+        // return redirect(route('thankyou'));
+    }
+
+    // public function ajaxPlaceOrder(Request $request){
+    //     return response()->json($response->all()); 
+    // }
+    
+
+    public function ajaxPlaceOrder(Request $request){
+        // return $request->ingredients;
+
+        
+
+        // Get selected ingredients price
+        $prices = IngredientController::getIngredients($request->ingredients)->pluck('price');
+
+        // Convert from $prices variable array to float
+        foreach($prices as $i => $price){
+            $prices[$i] =(float)$price;
+        }
+
+        $order = new Order;
+
+        // Calculate order total price
+        $orderTotal = 0;
+
+        foreach ( $prices as $price) {
+            $orderTotal += $price;
+        }
+
+        // Store all data to DB Orders
+
+        $order->email = Auth::user()->email;
+        $order->ingredients = serialize($request->ingredients);
+        // $order->total = $request->input('total');
+        $order->total = $orderTotal;
+        // $order->status = $request->input('status') ? true : false;
+        $order->status = 1;
+
+
+        // $order->save();
+        Auth::user()->orders()->save($order);
+
+        Session::forget('cart');
+
+        return response()->json(['success'=>'Votre commande a été effectuée avec succès!. Vous pouvez voir vos commandes <a href="/my-orders">ici</a>']);  
     }
 
 
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-
-    public function destroy($id)
-    {
-        //
-    }
 }

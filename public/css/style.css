@@ -671,6 +671,12 @@ header #srch button:hover, header #srch:hover button{
 	color:#fff;
 	border:1px solid #13d22e;
 }
+
+.is-in-cart{
+	background:#d41212 !important;
+	border:1px solid #d41212 !important;
+}
+
 .product-thumb .caption .des, .product-thumb .caption .rating, .product-thumb .caption .button-group, .product-list .product-thumb .image .onhover{
 	display:none;
 }
@@ -4067,7 +4073,7 @@ footer .powered li{
 	padding:15px 30px;	
 }
 .mycart .listproducts tbody td{
-	padding:50px 30px;
+	padding:15px 30px;
 	vertical-align:middle;
 	font-size:18px;
 	font-weight:500;
@@ -4089,6 +4095,11 @@ footer .powered li{
 .mycart .listproducts tbody td:nth-child(4), .mycart .listproducts tbody tr:last-child td:last-child{
 	color:#13d22e;
 }
+
+.user-orders .listproducts tbody td:nth-child(4), .user-orders .listproducts tbody tr:last-child td:last-child{
+	color:#686868 !important;
+}
+
 .mycart .listproducts button{
 	background:none;
 	border:none;
@@ -4098,6 +4109,10 @@ footer .powered li{
 }
 .mycart .listproducts tbody tr:last-child td{
 	color:#17161f;
+}
+
+.user-orders .listproducts tbody tr:last-child td{
+	color:#686868 !important;
 }
 .mycart .listproducts .qtypara .add {
 	right: 19%;
@@ -5534,3 +5549,18 @@ footer .powered li{
 *
 *
 */
+
+
+.border-top {
+    /* border-top: 1px solid #CCCCCC; */
+    padding-top: 15px;
+}
+
+.border-bottom {
+    /* border-bottom: 1px solid #CCCCCC; */
+	padding-bottom: 15px;
+}
+
+.is-invalid {
+	border-color: red !important;
+}

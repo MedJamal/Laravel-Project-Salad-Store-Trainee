@@ -18,6 +18,9 @@
 <!-- stylesheet -->
 <link href="{{asset('css\style.css')}}" rel="stylesheet" type="text/css">
 
+{{-- Laravel token --}}
+<meta name="csrf-token" content="{{ csrf_token() }}" />
+
 <body>
     <!--top start here -->
     @include('partials.top')
@@ -37,6 +40,7 @@
     </footer>
     <!-- footer end here -->
     
+
     <!-- jquery -->
     <script src="{{ asset('js\jquery.2.1.1.min.js') }}"></script>
     <!-- bootstrap js -->
@@ -47,5 +51,7 @@
     <script src="{{ asset('js\internal.js') }}"></script>
     <!-- owlcarousel js -->
     <script src="{{ asset('js\owl-carousel\owl.carousel.min.js') }}"></script>
+
+    {{-- <script src="{{ asset('js\addToCart.js') }}"></script> --}}
 </body>
 </html>

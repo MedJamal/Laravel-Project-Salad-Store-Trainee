@@ -4,7 +4,7 @@
 
 
 
-<form method="POST" action="{{ route('admin.ingredients.store') }}" enctype="multipart/form-data">
+<form class="col-md-4" method="POST" action="{{ route('admin.ingredients.store') }}" enctype="multipart/form-data">
     {{ csrf_field() }}
 
     <div class="form-group">
@@ -12,6 +12,15 @@
         <input type="text" class="form-control" name="name" placeholder="Enter the name">
     </div>
 
+    <div class="form-group">
+        <label for="category">Category</label>
+        <select name="ingredientscategory_id" class="form-control">
+            @foreach ($categories as $category )
+                <option value="{{ $category->id }}">{{ $category->name }}</option>
+            @endforeach
+        </select>
+    </div>
+    
     <div class="form-group">
         <label for="name">Price</label>
         {{-- price input must to be fix for price currency --}}

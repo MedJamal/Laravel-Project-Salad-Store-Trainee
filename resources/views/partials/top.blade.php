@@ -16,7 +16,7 @@
                     </li>
                 </ul>
                 <ul class="list-inline pull-right  icons">
-                    <li class="dropdown currency">
+                    {{-- <li class="dropdown currency">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon_cog"></i> Setting</a>
                         <ul class="dropdown-menu">
                             <li class="dropdown-submenu">
@@ -54,9 +54,9 @@
                                 </ul>
                             </li>
                         </ul>
-                    </li>
+                    </li> --}}
                     <li class="dropdown cart">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon_cart"></i> Cart</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon_cart"></i> Panier</a>
                         <ul class="dropdown-menu">
                             <li>
                                 <table class="table">
@@ -105,7 +105,7 @@
                                     </tbody>
                                 </table>
                                 <div class="buttons">
-                                    <button class="btn-primary" type="button" onclick="location.href='shoppingcart.html'"><i class="icon_cart"></i> View Cart</button>
+                                    <button class="btn-primary" type="button" onclick="location.href='{{ route('cart.index') }}'"><i class="icon_cart"></i> View Cart</button>
                                     <button class="btn-primary" type="button" onclick="location.href='checkout.html'"><i class="icon_box-checked"></i> Checkout</button>
                                 </div>
                             </li>
@@ -115,32 +115,42 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="icon_profile"></i>
                             @guest
-                                My Account
+                                Mon compte
                             @else
                                 {{ Auth::user()->name }}
                             @endguest
                         </a>
                         <ul class="dropdown-menu">
-                            <li>
+                            <li> 
+                                {{-- CSS issue --}}
                                 <button type="button" class="fac">Facebook</button>
                                 <button type="button" class="go">Google+</button>
                             </li>
+                            {{-- Dashboard --}}
+                            @auth
+                                <li>
+                                    <a href="{{ route('admin.index') }}"><i class="icon_profile"></i>Dashboard</a>
+                                </li>
+                            @endauth
                             <li>
-                                <a href="#"><i class="icon_profile"></i>My Account</a>
+                                <a href="#"><i class="icon_profile"></i>Mon compte</a>
                             </li>
                             <li>
-                                <a href="#"><i class="icon_archive"></i>My Orders</a>
+                                <a href="{{ route('user.orders') }}"><i class="icon_archive"></i>Mes commandes</a>
                             </li>	
                             <li>
                                 <a href="#"><i class="icon_heart"></i>Wishlist</a>
                             </li>
+                            {{-- Auth buttons --}}
+                            {{-- Check if the user is auth or guest --}}
                             @guest
-                                <li class="des text-center">If you are a new user</li>
+                                <li class="des text-center">Si tu es êtes un nouvel utilisateur</li>
+                                {{-- If you are a new user --}}
                                 <li class="text-center">
-                                    <a href="{{ route('auth') }}">Register Now</a>
+                                    <a href="{{ route('auth') }}">Inscrire maintenant</a>
                                 </li>
                                 <li>
-                                    <button class="btn" type="button" onclick="location.href='{{ route('auth') }}'">Login</button>
+                                    <button class="btn" type="button" onclick="location.href='{{ route('auth') }}'">S'identifier</button>
                                 </li>
                             @else
                                 <li>
@@ -152,7 +162,7 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST">
                                         @csrf
                                     </form>
-                                    <button class="btn" type="button" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</button>
+                                    <button class="btn" type="button" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Déconnecter</button>
                                 </li>
                             @endguest
                         </ul>

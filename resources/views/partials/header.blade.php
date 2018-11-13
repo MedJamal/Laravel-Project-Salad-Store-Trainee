@@ -20,7 +20,7 @@
                         <div class="collapse navbar-collapse navbar-ex1-collapse padd0">
                             <ul class="nav navbar-nav text-right">
                                 <li class="dropdown topheader">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Home</a>
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Accueil</a>
                                     <div class="dropdown-menu">
                                         <h2><span>Offer Deals : </span> Get flat 25% on Vegetables | Get 16% off organic healthy  foods | Get 28% off in organic meat.</h2>
                                         <div class="col-sm-3">
@@ -190,7 +190,7 @@
                                     </div>
                                 </li>
                                 <li>
-                                    <a href="contactus.html">Contact us</a>
+                                    <a href="{{ route('contactus') }}">Contact us</a>
                                 </li>
                             </ul>
                         </div>

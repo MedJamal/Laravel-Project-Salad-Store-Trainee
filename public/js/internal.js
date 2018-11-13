@@ -227,7 +227,12 @@ $(document).on('ready',function(){
 	
  
     $(".onhover ul").hide();
-    //$(".onhover .icons").show();
+		//$(".onhover .icons").show();
+		$('.onhover .icons0').on('click',function(){
+			$(".onhover0 ul").slideToggle();
+			return false;
+			});
+
     $('.onhover .icons1').on('click',function(){
 		$(".onhover1 ul").slideToggle();
 		return false;

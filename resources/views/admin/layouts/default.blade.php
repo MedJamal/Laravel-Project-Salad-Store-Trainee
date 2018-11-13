@@ -22,7 +22,7 @@
 
 <body>
     <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">SaladStore</a>
+        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/">SaladStore</a>
         {{-- <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"> --}}
         <ul class="navbar-nav px-3">
             <li class="nav-item text-nowrap">
@@ -47,13 +47,18 @@
                         <li class="nav-item">
                             {{-- Route::currentRouteName() --}}
                             <a class="nav-link{{ Route::currentRouteName() === 'admin.index' ? ' active' : '' }}" href="{{ route('admin.index') }}">
-                                <span data-feather="home"></span>
+                                {{-- <span data-feather="home"></span> --}}
+                                <i class="fas fa-home"></i>
                                 Dashboard <span class="sr-only">(current)</span>
+                                {{-- 
+                                    icons from here https://feathericons.com/
+                                 --}}
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link{{ Route::currentRouteName() === 'admin.orders.index' ? ' active' : '' }}" href="{{ route('admin.orders.index') }}">
-                                <span data-feather="file"></span>
+                                {{-- <span data-feather="file"></span> --}}
+                                <i class="fas fa-clipboard-list"></i>
                                 Orders
                             </a>
                         </li>
@@ -63,27 +68,32 @@
                                 Products
                             </a>
                         </li> --}}
-                        {{-- <li class="nav-item">
-                            <a class="nav-link{{ Route::currentRouteName() === 'admin.index' ? ' active' : '' }}" href="#">
-                                <span data-feather="users"></span>
-                                Customers
+                        <li class="nav-item">
+                            <a class="nav-link{{ Route::currentRouteName() === 'admin.users.index' ? ' active' : '' }}" href="{{ route('admin.users.index') }}">
+                                {{-- <span data-feather="users"></span> --}}
+                                <i class="fas fa-users"></i>
+                                Users
                             </a>
-                        </li> --}}
-                        {{-- <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="bar-chart-2"></span>
-                                Reports
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link{{ Route::currentRouteName() === 'admin.ingredientscategory.index' ? ' active' : '' }}" href="{{ route('admin.ingredientscategory.index') }}">
+                                <span>
+                                    {{-- <span data-feather="tag"></span> --}}
+                                    <i class="fas fa-tags"></i>
+                                </span>
+                                Categories
                             </a>
-                        </li> --}}
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link{{ Route::currentRouteName() === 'admin.ingredients.index' ? ' active' : '' }}" href="{{ route('admin.ingredients.index') }}">
-                                <span data-feather="layers"></span>
+                                {{-- <span data-feather="layers"></span> --}}
+                                <i class="fas fa-users"></i>
                                 Integrations
                             </a>
                         </li>
                     </ul>
                     
-                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                    {{-- <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
                         <span>Saved reports</span>
                         <a class="d-flex align-items-center text-muted" href="#">
                             <span data-feather="plus-circle"></span>
@@ -113,31 +123,55 @@
                                 <span data-feather="file-text"></span>
                                 Year-end sale
                             </a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
             </nav>
             
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">
-                        {{ Route::currentRouteName() === 'admin.index' ? 'Dashboard' : ''}}
-                        {{ Route::currentRouteName() === 'admin.ingredients.index' ? 'Ingredients' : '' }}
-                        {{ Route::currentRouteName() === 'admin.ingredients.create' ? 'Create ngredient' : '' }}
-                        {{ Route::currentRouteName() === 'admin.orders.index' ? 'Orders' : '' }}
-                        {{ Route::currentRouteName() === 'admin.orders.create' ? 'Create an order' : '' }}
-                    </h1>
-                            {{-- <div class="btn-toolbar mb-2 mb-md-0">
-                                <div class="btn-group mr-2">
-                                    <button class="btn btn-sm btn-outline-secondary">Share</button>
-                                    <button class="btn btn-sm btn-outline-secondary">Export</button>
-                                </div>
-                                <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
-                                    <span data-feather="calendar"></span>
-                                    This week
-                                </button>
-                            </div> --}}
+                        <h1 class="h2">
+                            {{ Route::currentRouteName() === 'admin.index' ? 'Dashboard' : ''}}
+                            {{ Route::currentRouteName() === 'admin.ingredients.index' ? 'Ingredients' : '' }}
+                            {{ Route::currentRouteName() === 'admin.ingredients.create' ? 'Create ingredient' : '' }}
+                            {{ Route::currentRouteName() === 'admin.ingredients.edit' ? 'Edit ingredient' : '' }}
+                            {{ Route::currentRouteName() === 'admin.orders.index' ? 'Orders' : '' }}
+                            {{ Route::currentRouteName() === 'admin.orders.create' ? 'Create an order' : '' }}
+                            {{ Route::currentRouteName() === 'admin.users.index' ? 'Users' : '' }}
+                            {{ Route::currentRouteName() === 'admin.ingredientscategory.index' ? 'Ingredients categories' : '' }}
+                        </h1>
+                        {{-- <div class="btn-toolbar mb-2 mb-md-0">
+                            <div class="btn-group mr-2">
+                                <button class="btn btn-sm btn-outline-secondary">Share</button>
+                                <button class="btn btn-sm btn-outline-secondary">Export</button>
+                            </div>
+                            <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
+                                <span data-feather="calendar"></span>
+                                This week
+                            </button>
+                        </div>  --}}
+                    </div>
+
+                {{-- Messages --}}
+                @if(count($errors) > 0)
+                    @foreach($errors->all() as $error)
+                        <div class="alert alert-danger">
+                            {{$error}}
                         </div>
+                    @endforeach
+                @endif
+
+                @if(session('success'))
+                    <div class="alert alert-success">
+                        {{session('success')}}
+                    </div>
+                @endif
+
+                @if(session('error'))
+                    <div class="alert alert-danger">
+                        {{session('error')}}
+                    </div>
+                @endif
 
                 @yield('content')
                 
