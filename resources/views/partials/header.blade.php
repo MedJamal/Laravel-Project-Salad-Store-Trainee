@@ -20,7 +20,7 @@
                         <div class="collapse navbar-collapse navbar-ex1-collapse padd0">
                             <ul class="nav navbar-nav text-right">
                                 <li class="dropdown topheader">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Accueil</a>
+                                    <a href="/" class="dropdown-toggle">Accueil</a>
                                     <div class="dropdown-menu">
                                         <h2><span>Offer Deals : </span> Get flat 25% on Vegetables | Get 16% off organic healthy  foods | Get 28% off in organic meat.</h2>
                                         <div class="col-sm-3">
@@ -101,12 +101,12 @@
                                     <a href="aboutus.html">About us</a>
                                 </li>
                                 <li class="dropdown topheading">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Shop</a>
-                                    <div class="dropdown-menu">
+                                    <a href="{{ route('shop.index') }}" >Shop</a>
+                                    {{-- <div class="dropdown-menu">
                                         <div class="dropdown-inner">
                                             <ul class="list-unstyled">
                                                 <li>
-                                                    <a href="shop.html">Shop</a>
+                                                    <a href="{{ route('shop.index') }}">Shop</a>
                                                 </li>
                                                 <li>
                                                     <a href="shopdetail.html">Shop Detail</a>
@@ -125,7 +125,7 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </li>
                                 <li class="dropdown topheading">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages </a>

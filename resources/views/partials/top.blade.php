@@ -128,9 +128,11 @@
                             </li>
                             {{-- Dashboard --}}
                             @auth
-                                <li>
-                                    <a href="{{ route('admin.index') }}"><i class="icon_profile"></i>Dashboard</a>
-                                </li>
+                                @if(Auth::user()->is_admin ==1)
+                                    <li>
+                                        <a href="{{ route('admin.index') }}"><i class="icon_profile"></i>Dashboard</a>
+                                    </li>
+                                @endif
                             @endauth
                             <li>
                                 <a href="#"><i class="icon_profile"></i>Mon compte</a>

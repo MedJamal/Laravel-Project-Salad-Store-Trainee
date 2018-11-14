@@ -27,6 +27,18 @@ class PagesController extends Controller
         return view('index', compact('categories', 'ingredients'));
     }
 
+    
+
+    public function shop(){
+        $categories = Ingredientscategory::all();
+        $ingredients = Ingredient::all();
+        // return $ingredients = Ingredient::where('isactive', '=', true )->get();
+        
+        return view('shop.index', compact('categories', 'ingredients'));
+    }
+
+
+
     public function userOrders(){
         // Grep all orders that belongs to auth-user
         $orders = Order::where('user_id', auth()->user()->id)->orderBy('created_at', 'desc')->get();

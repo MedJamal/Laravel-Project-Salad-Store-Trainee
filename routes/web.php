@@ -14,6 +14,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // Pages
 Route::get('/', 'PagesController@index')->name('index');
+Route::get('/shop', 'PagesController@shop')->name('shop.index');
 Route::get('/contactus', 'PagesController@contactus')->name('contactus');
 Route::get('/my-orders', 'PagesController@userOrders')->name('user.orders');
 Route::get('/my-orders/{id}', 'PagesController@userOrderShow')->name('user.order.show');
@@ -66,6 +67,9 @@ Route::group( ['middleware' => 'IsAdmin', 'prefix'=>'admin'], function(){
     // Route::put('/orders/{id}', 'OrderController@edit')->name('admin.orders.update');
 
     Route::get('/ingredients-categories', 'IngredientscategoryController@index')->name('admin.ingredientscategory.index');
+    Route::post('/ingredients-categories-store', 'IngredientscategoryController@store')->name('admin.ingredientscategory.store');
+    Route::patch('/ingredients-categories-update/{id}/update', 'IngredientscategoryController@update')->name('admin.ingredientscategory.update');
+    Route::get('/ingredients-categories-delete/{id}/delete', 'IngredientscategoryController@delete')->name('admin.ingredientscategory.delete');
 
     // Users
     Route::get('/users', 'UserController@index')->name('admin.users.index');
