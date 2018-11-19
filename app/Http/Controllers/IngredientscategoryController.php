@@ -36,7 +36,7 @@ class IngredientscategoryController extends Controller
 
         $category->save();
 
-        return redirect()->back()->with('success', $category->name.' has been edited!');
+        return redirect()->back()->with('success', $category->name.' has been edited !');
 
         // return $category = Ingredientscategory::find($id);
 
