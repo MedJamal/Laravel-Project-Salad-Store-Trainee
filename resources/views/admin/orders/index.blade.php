@@ -1,12 +1,12 @@
 @extends('admin.layouts.default')
 
 @section('content')
-
+{{-- 
         <div>
             <a class="btn btn-primary" href="{{ route('admin.orders.create') }}">Add new order</a>
         </div>
 
-        <br>
+        <br> --}}
 
         <table class="table fluid">
             <thead class="thead-light">
