@@ -28,7 +28,7 @@ class PagesController extends Controller
     }
 
     
-
+    // Shop page
     public function shop(){
         $categories = Ingredientscategory::all();
         $ingredients = Ingredient::all();
