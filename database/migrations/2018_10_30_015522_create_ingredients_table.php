@@ -15,9 +15,8 @@ class CreateIngredientsTable extends Migration
     {
         Schema::create('ingredients', function (Blueprint $table) {
             $table->increments('id');
-            // $table->integer('category_id');
             $table->unsignedInteger('ingredientscategory_id');
-            $table->foreign('ingredientscategory_id')->references('id')->on('ingredientscategories');
+            $table->foreign('ingredientscategory_id')->references('id')->on('ingredientscategories')->onDelete('cascade');
             $table->string('name');
             $table->decimal('price');
             $table->boolean('isactive');
